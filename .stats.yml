@@ -1,0 +1,4 @@
+configured_endpoints: 8
+openapi_spec_url: https://storage.googleapis.com/stainless-sdk-openapi-specs/build-moi%2Ffatebook2-e234b515ef424c3e3363005b24a642604a4743c4c7efc72fa0489d1a0e0634a2.yml
+openapi_spec_hash: 825b5a7b1490120fa1b9b05c556c070c
+config_hash: 07dfc4cae02e3dab1746456764fca526
