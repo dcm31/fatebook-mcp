@@ -9,8 +9,8 @@ It is generated with [Stainless](https://www.stainless.com/).
 Because it's not published yet, clone the repo and build it:
 
 ```sh
-git clone git@github.com:stainless-sdks/fatebook2-typescript.git
-cd fatebook2-typescript
+git clone git@github.com:dcm31/fatebook-mcp.git
+cd fatebook-mcp
 yarn && ./scripts/build-all
 ```
 
@@ -39,7 +39,7 @@ For clients with a configuration JSON, it might look something like this:
   "mcpServers": {
     "fatebook2_api": {
       "command": "npx",
-      "args": ["-y", "/path/to/local/fatebook2-typescript/packages/mcp-server", "--client=claude"],
+      "args": ["-y", "/path/to/local/fatebook-mcp/packages/mcp-server", "--client=claude"],
       "env": {
         "FATEBOOK2_API_KEY": "My API Key"
       }
