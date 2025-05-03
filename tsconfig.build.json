@@ -6,7 +6,7 @@
     "rootDir": "./dist/src",
     "paths": {
       "fatebook2/*": ["dist/src/*"],
-      "fatebook2": ["dist/src/index.ts"],
+      "fatebook2": ["dist/src/index.ts"]
     },
     "noEmit": false,
     "declaration": true,
