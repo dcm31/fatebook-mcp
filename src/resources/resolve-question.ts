@@ -8,6 +8,16 @@ export class ResolveQuestion extends APIResource {
   /**
    * Resolve to YES, NO or AMBIGUOUS if it's a binary question and AMBIGUOUS, OTHER,
    * or $OPTION if it's a multi-choice question
+   *
+   * @example
+   * ```ts
+   * const response = await client.resolveQuestion.resolve({
+   *   questionId: 'cm05iuuhx00066e7a1hncujn0',
+   *   questionType: 'BINARY',
+   *   resolution: 'YES',
+   *   apiKey: 'your_api_key_here',
+   * });
+   * ```
    */
   resolve(body: ResolveQuestionResolveParams, options?: RequestOptions): APIPromise<unknown> {
     return this._client.post('/v0/resolveQuestion', { body, ...options });

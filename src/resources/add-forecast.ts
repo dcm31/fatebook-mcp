@@ -7,6 +7,15 @@ import { RequestOptions } from '../internal/request-options';
 export class AddForecast extends APIResource {
   /**
    * Add a forecast to the question. Forecasts are between 0 and 1.
+   *
+   * @example
+   * ```ts
+   * const addForecast = await client.addForecast.create({
+   *   forecast: 0.75,
+   *   questionId: 'cm05iuuhx00066e7a1hncujn0',
+   *   apiKey: 'your_api_key_here',
+   * });
+   * ```
    */
   create(body: AddForecastCreateParams, options?: RequestOptions): APIPromise<unknown> {
     return this._client.post('/v0/addForecast', { body, ...options });
