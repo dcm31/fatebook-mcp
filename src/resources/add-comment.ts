@@ -7,6 +7,15 @@ import { RequestOptions } from '../internal/request-options';
 export class AddComment extends APIResource {
   /**
    * Add a comment to the question.
+   *
+   * @example
+   * ```ts
+   * const addComment = await client.addComment.create({
+   *   comment: 'This is an interesting question!',
+   *   questionId: 'cm05iuuhx00066e7a1hncujn0',
+   *   apiKey: 'your_api_key_here',
+   * });
+   * ```
    */
   create(body: AddCommentCreateParams, options?: RequestOptions): APIPromise<unknown> {
     return this._client.post('/v0/addComment', { body, ...options });
