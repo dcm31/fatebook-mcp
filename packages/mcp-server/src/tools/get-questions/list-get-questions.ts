@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   resource: 'get_questions',
   operation: 'read',
   tags: [],
+  httpMethod: 'get',
+  httpPath: '/v0/getQuestions',
+  operationId: 'question-getQuestionsApiProcedure',
 };
 
 export const tool: Tool = {

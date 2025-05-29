@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   resource: 'add_comment',
   operation: 'write',
   tags: [],
+  httpMethod: 'post',
+  httpPath: '/v0/addComment',
+  operationId: 'question-addComment',
 };
 
 export const tool: Tool = {

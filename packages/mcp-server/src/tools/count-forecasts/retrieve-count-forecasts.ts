@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   resource: 'count_forecasts',
   operation: 'read',
   tags: [],
+  httpMethod: 'get',
+  httpPath: '/v0/countForecasts',
+  operationId: 'countForecasts',
 };
 
 export const tool: Tool = {

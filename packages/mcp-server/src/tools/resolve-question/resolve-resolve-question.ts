@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   resource: 'resolve_question',
   operation: 'write',
   tags: [],
+  httpMethod: 'post',
+  httpPath: '/v0/resolveQuestion',
+  operationId: 'question-resolveQuestion',
 };
 
 export const tool: Tool = {
