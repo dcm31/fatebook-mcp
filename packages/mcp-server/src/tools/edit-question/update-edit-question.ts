@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   resource: 'edit_question',
   operation: 'write',
   tags: [],
+  httpMethod: 'patch',
+  httpPath: '/v0/editQuestion',
+  operationId: 'question-editQuestion',
 };
 
 export const tool: Tool = {

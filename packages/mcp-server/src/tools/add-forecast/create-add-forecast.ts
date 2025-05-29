@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   resource: 'add_forecast',
   operation: 'write',
   tags: [],
+  httpMethod: 'post',
+  httpPath: '/v0/addForecast',
+  operationId: 'question-addForecast',
 };
 
 export const tool: Tool = {

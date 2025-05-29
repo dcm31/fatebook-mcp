@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   resource: 'set_shared_publicly',
   operation: 'write',
   tags: [],
+  httpMethod: 'patch',
+  httpPath: '/v0/setSharedPublicly',
+  operationId: 'question-setSharedPublicly',
 };
 
 export const tool: Tool = {
