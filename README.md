@@ -29,13 +29,9 @@ const client = new Fatebook2({
   apiKey: process.env['FATEBOOK2_API_KEY'], // This is the default and can be omitted
 });
 
-async function main() {
-  const getQuestions = await client.getQuestions.list({ apiKey: 'REPLACE_ME' });
+const getQuestions = await client.getQuestions.list({ apiKey: 'REPLACE_ME' });
 
-  console.log(getQuestions.items);
-}
-
-main();
+console.log(getQuestions.items);
 ```
 
 ### Request & Response types
@@ -50,12 +46,8 @@ const client = new Fatebook2({
   apiKey: process.env['FATEBOOK2_API_KEY'], // This is the default and can be omitted
 });
 
-async function main() {
-  const params: Fatebook2.GetQuestionListParams = { apiKey: 'REPLACE_ME' };
-  const getQuestions: Fatebook2.GetQuestionListResponse = await client.getQuestions.list(params);
-}
-
-main();
+const params: Fatebook2.GetQuestionListParams = { apiKey: 'REPLACE_ME' };
+const getQuestions: Fatebook2.GetQuestionListResponse = await client.getQuestions.list(params);
 ```
 
 Documentation for each method, request param, and response field are available in docstrings and will appear on hover in most modern editors.
@@ -68,19 +60,15 @@ a subclass of `APIError` will be thrown:
 
 <!-- prettier-ignore -->
 ```ts
-async function main() {
-  const getQuestions = await client.getQuestions.list({ apiKey: 'REPLACE_ME' }).catch(async (err) => {
-    if (err instanceof Fatebook2.APIError) {
-      console.log(err.status); // 400
-      console.log(err.name); // BadRequestError
-      console.log(err.headers); // {server: 'nginx', ...}
-    } else {
-      throw err;
-    }
-  });
-}
-
-main();
+const getQuestions = await client.getQuestions.list({ apiKey: 'REPLACE_ME' }).catch(async (err) => {
+  if (err instanceof Fatebook2.APIError) {
+    console.log(err.status); // 400
+    console.log(err.name); // BadRequestError
+    console.log(err.headers); // {server: 'nginx', ...}
+  } else {
+    throw err;
+  }
+});
 ```
 
 Error codes are as follows:
