@@ -1,7 +1,8 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import Fatebook2 from 'fatebook2';
-import { Tool } from '@modelcontextprotocol/sdk/types.js';
+import { Metadata, Endpoint, HandlerFunction } from './types';
+
+export { Metadata, Endpoint, HandlerFunction };
 
 import list_get_questions from './get-questions/list-get-questions';
 import resolve_resolve_question from './resolve-question/resolve-resolve-question';
@@ -11,24 +12,6 @@ import create_add_comment from './add-comment/create-add-comment';
 import delete_delete_question from './delete-question/delete-delete-question';
 import update_edit_question from './edit-question/update-edit-question';
 import retrieve_count_forecasts from './count-forecasts/retrieve-count-forecasts';
-
-export type HandlerFunction = (client: Fatebook2, args: Record<string, unknown> | undefined) => Promise<any>;
-
-export type Metadata = {
-  resource: string;
-  operation: 'read' | 'write';
-  tags: string[];
-
-  httpMethod?: string;
-  httpPath?: string;
-  operationId?: string;
-};
-
-export type Endpoint = {
-  metadata: Metadata;
-  tool: Tool;
-  handler: HandlerFunction;
-};
 
 export const endpoints: Endpoint[] = [];
 
