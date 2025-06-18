@@ -1,6 +1,6 @@
 # Fatebook2 TypeScript API Library
 
-[![NPM version](https://img.shields.io/npm/v/fatebook2.svg)](https://npmjs.org/package/fatebook2) ![npm bundle size](https://img.shields.io/bundlephobia/minzip/fatebook2)
+[![NPM version](<https://img.shields.io/npm/v/fatebook2.svg?label=npm%20(stable)>)](https://npmjs.org/package/fatebook2) ![npm bundle size](https://img.shields.io/bundlephobia/minzip/fatebook2)
 
 This library provides convenient access to the Fatebook2 REST API from server-side TypeScript or JavaScript.
 
