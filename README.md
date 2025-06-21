@@ -15,7 +15,7 @@ npm install git+ssh://git@github.com:dcm31/fatebook-mcp.git
 ```
 
 > [!NOTE]
-> Once this package is [published to npm](https://app.stainless.com/docs/guides/publish), this will become: `npm install fatebook2`
+> Once this package is [published to npm](https://www.stainless.com/docs/guides/publish), this will become: `npm install fatebook2`
 
 ## Usage
 
