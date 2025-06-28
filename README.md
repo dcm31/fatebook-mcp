@@ -1,6 +1,6 @@
 # Fatebook2 TypeScript API Library
 
-[![NPM version](https://img.shields.io/npm/v/fatebook2.svg)](https://npmjs.org/package/fatebook2) ![npm bundle size](https://img.shields.io/bundlephobia/minzip/fatebook2)
+[![NPM version](<https://img.shields.io/npm/v/fatebook2.svg?label=npm%20(stable)>)](https://npmjs.org/package/fatebook2) ![npm bundle size](https://img.shields.io/bundlephobia/minzip/fatebook2)
 
 This library provides convenient access to the Fatebook2 REST API from server-side TypeScript or JavaScript.
 
@@ -11,11 +11,11 @@ It is generated with [Stainless](https://www.stainless.com/).
 ## Installation
 
 ```sh
-npm install git+ssh://git@github.com:stainless-sdks/fatebook2-typescript.git
+npm install git+ssh://git@github.com:dcm31/fatebook-mcp.git
 ```
 
 > [!NOTE]
-> Once this package is [published to npm](https://app.stainless.com/docs/guides/publish), this will become: `npm install fatebook2`
+> Once this package is [published to npm](https://www.stainless.com/docs/guides/publish), this will become: `npm install fatebook2`
 
 ## Usage
 
@@ -29,13 +29,9 @@ const client = new Fatebook2({
   apiKey: process.env['FATEBOOK2_API_KEY'], // This is the default and can be omitted
 });
 
-async function main() {
-  const getQuestions = await client.getQuestions.list({ apiKey: 'REPLACE_ME' });
+const getQuestions = await client.getQuestions.list({ apiKey: 'REPLACE_ME' });
 
-  console.log(getQuestions.items);
-}
-
-main();
+console.log(getQuestions.items);
 ```
 
 ### Request & Response types
@@ -50,12 +46,8 @@ const client = new Fatebook2({
   apiKey: process.env['FATEBOOK2_API_KEY'], // This is the default and can be omitted
 });
 
-async function main() {
-  const params: Fatebook2.GetQuestionListParams = { apiKey: 'REPLACE_ME' };
-  const getQuestions: Fatebook2.GetQuestionListResponse = await client.getQuestions.list(params);
-}
-
-main();
+const params: Fatebook2.GetQuestionListParams = { apiKey: 'REPLACE_ME' };
+const getQuestions: Fatebook2.GetQuestionListResponse = await client.getQuestions.list(params);
 ```
 
 Documentation for each method, request param, and response field are available in docstrings and will appear on hover in most modern editors.
@@ -68,22 +60,18 @@ a subclass of `APIError` will be thrown:
 
 <!-- prettier-ignore -->
 ```ts
-async function main() {
-  const getQuestions = await client.getQuestions.list({ apiKey: 'REPLACE_ME' }).catch(async (err) => {
-    if (err instanceof Fatebook2.APIError) {
-      console.log(err.status); // 400
-      console.log(err.name); // BadRequestError
-      console.log(err.headers); // {server: 'nginx', ...}
-    } else {
-      throw err;
-    }
-  });
-}
-
-main();
+const getQuestions = await client.getQuestions.list({ apiKey: 'REPLACE_ME' }).catch(async (err) => {
+  if (err instanceof Fatebook2.APIError) {
+    console.log(err.status); // 400
+    console.log(err.name); // BadRequestError
+    console.log(err.headers); // {server: 'nginx', ...}
+  } else {
+    throw err;
+  }
+});
 ```
 
-Error codes are as followed:
+Error codes are as follows:
 
 | Status Code | Error Type                 |
 | ----------- | -------------------------- |
@@ -240,9 +228,8 @@ parameter. This library doesn't validate at runtime that the request matches the
 send will be sent as-is.
 
 ```ts
-client.foo.create({
-  foo: 'my_param',
-  bar: 12,
+client.getQuestions.list({
+  // ...
   // @ts-expect-error baz is not yet public
   baz: 'undocumented option',
 });
@@ -351,7 +338,7 @@ This package generally follows [SemVer](https://semver.org/spec/v2.0.0.html) con
 
 We take backwards-compatibility seriously and work hard to ensure you can rely on a smooth upgrade experience.
 
-We are keen for your feedback; please open an [issue](https://www.github.com/stainless-sdks/fatebook2-typescript/issues) with questions, bugs, or suggestions.
+We are keen for your feedback; please open an [issue](https://www.github.com/dcm31/fatebook-mcp/issues) with questions, bugs, or suggestions.
 
 ## Requirements
 
@@ -360,7 +347,7 @@ TypeScript >= 4.9 is supported.
 The following runtimes are supported:
 
 - Web browsers (Up-to-date Chrome, Firefox, Safari, Edge, and more)
-- Node.js 18 LTS or later ([non-EOL](https://endoflife.date/nodejs)) versions.
+- Node.js 20 LTS or later ([non-EOL](https://endoflife.date/nodejs)) versions.
 - Deno v1.28.0 or higher.
 - Bun 1.0 or later.
 - Cloudflare Workers.

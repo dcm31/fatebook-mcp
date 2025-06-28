@@ -1,8 +1,5 @@
 import { Tool } from '@modelcontextprotocol/sdk/types.js';
 import { Endpoint } from './tools';
-import Ajv from 'ajv';
-
-const ajv = new Ajv();
 
 export interface ClientCapabilities {
   topLevelUnions: boolean;
@@ -22,15 +19,50 @@ export const defaultClientCapabilities: ClientCapabilities = {
   toolNameLength: undefined,
 };
 
+export type ClientType = 'openai-agents' | 'claude' | 'claude-code' | 'cursor';
+
+// Client presets for compatibility
+// Note that these could change over time as models get better, so this is
+// a best effort.
+export const knownClients: Record<ClientType, ClientCapabilities> = {
+  'openai-agents': {
+    topLevelUnions: false,
+    validJson: true,
+    refs: true,
+    unions: true,
+    formats: true,
+    toolNameLength: undefined,
+  },
+  claude: {
+    topLevelUnions: true,
+    validJson: false,
+    refs: true,
+    unions: true,
+    formats: true,
+    toolNameLength: undefined,
+  },
+  'claude-code': {
+    topLevelUnions: false,
+    validJson: true,
+    refs: true,
+    unions: true,
+    formats: true,
+    toolNameLength: undefined,
+  },
+  cursor: {
+    topLevelUnions: false,
+    validJson: true,
+    refs: false,
+    unions: false,
+    formats: false,
+    toolNameLength: 50,
+  },
+};
+
 /**
- * Attempts to parse strings into JSON objects if initial schema
- * validation fails.
+ * Attempts to parse strings into JSON objects
  */
 export function parseEmbeddedJSON(args: Record<string, unknown>, schema: Record<string, unknown>) {
-  if (ajv.validate(schema, args)) {
-    return args;
-  }
-
   let updated = false;
   const newArgs: Record<string, unknown> = Object.assign({}, args);
 
@@ -156,7 +188,11 @@ export function removeTopLevelUnions(tool: Tool): Tool[] {
   });
 }
 
-function findUsedDefs(schema: JSONSchema, defs: Record<string, JSONSchema>): Record<string, JSONSchema> {
+function findUsedDefs(
+  schema: JSONSchema,
+  defs: Record<string, JSONSchema>,
+  visited: Set<string> = new Set(),
+): Record<string, JSONSchema> {
   const usedDefs: Record<string, JSONSchema> = {};
 
   if (typeof schema !== 'object' || schema === null) {
@@ -168,9 +204,11 @@ function findUsedDefs(schema: JSONSchema, defs: Record<string, JSONSchema>): Rec
     if (refParts[0] === '#' && refParts[1] === '$defs' && refParts[2]) {
       const defName = refParts[2];
       const def = defs[defName];
-      if (def) {
+      if (def && !visited.has(schema.$ref)) {
         usedDefs[defName] = def;
-        Object.assign(usedDefs, findUsedDefs(def, defs));
+        visited.add(schema.$ref);
+        Object.assign(usedDefs, findUsedDefs(def, defs, visited));
+        visited.delete(schema.$ref);
       }
     }
     return usedDefs;
@@ -178,12 +216,15 @@ function findUsedDefs(schema: JSONSchema, defs: Record<string, JSONSchema>): Rec
 
   for (const key in schema) {
     if (key !== '$defs' && typeof schema[key] === 'object' && schema[key] !== null) {
-      Object.assign(usedDefs, findUsedDefs(schema[key] as JSONSchema, defs));
+      Object.assign(usedDefs, findUsedDefs(schema[key] as JSONSchema, defs, visited));
     }
   }
 
   return usedDefs;
 }
+
+// Export for testing
+export { findUsedDefs };
 
 /**
  * Inlines all $refs in a schema, eliminating $defs.
